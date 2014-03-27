@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.newgrand.cordova.speech.Speech"
+        version="1.0.0">
+
+    <name>Speech</name>
+    <author>Newgrand</author>
+
+    <description>
+        a phonegap plugin for xfire photograph and voice transmission
+    </description>
+
+    <license>MIT</license>
+
+    <js-module src="www/Speech.js" name="Speech">
+        <clobbers target="Speech" />
+    </js-module>
+
+    <access origin="*"/>
+
+    <engines>
+        <engine name="cordova" version=">=2.9.0" />
+    </engines>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Speech">
+                <param name="android-package" value="com.newgrand.cordova.speech.Speech"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.VIBRATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.RECEIVE_SMS" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+            <uses-permission android:name="android.permission.READ_CONTACTS" />
+            <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+            <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+            <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.GET_TASKS" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        </config-file>
+
+        <source-file src="src/android/com/newgrand/cordova/speech/Audio.java" target-dir="src/com/newgrand/cordova/speech/" />
+        <source-file src="src/android/com/newgrand/cordova/speech/AudioStatus.java" target-dir="src/com/newgrand/cordova/speech/" />
+        <source-file src="src/android/com/newgrand/cordova/speech/DirectoryUtil.java" target-dir="src/com/newgrand/cordova/speech/" />
+        <source-file src="src/android/com/newgrand/cordova/speech/Speech.java" target-dir="src/com/newgrand/cordova/speech/" />
+        <source-file src="src/android/com/newgrand/cordova/speech/Speex.java" target-dir="src/com/newgrand/cordova/speech/" />
+        <source-file src="src/android/armeabi/libspeex.so" target-dir="libs/armeabi/" />
+        <source-file src="src/android/armeabi-v7a/libspeex.so" target-dir="libs/armeabi-v7a/" />
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="Speech">
+                <param name="ios-package" value="NGSpeech" />
+            </feature>
+            <feature name="LocalStorage">
+                <param name="ios-package" value="CDVLocalStorage"/>
+            </feature>
+            <feature name="FileTransfer">
+                <param name="ios-package" value="CDVFileTransfer" />
+            </feature>
+            <feature name="File">
+                <param name="ios-package" value="CDVFile" />
+            </feature>
+            <feature name="Camera">
+                <param name="ios-package" value="CDVCamera" />
+            </feature>
+            <feature name="Media">
+                <param name="ios-package" value="CDVSound" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/speech/NGSpeech.h" />
+        <source-file src="src/ios/speech/NGSpeech.m" />
+
+        <header-file src="src/ios/speech/XIAudio.h" />
+        <source-file src="src/ios/speech/XIAudio.m" />
+
+        <header-file src="src/ios/speech/XIFileHelper.h" />
+        <source-file src="src/ios/speech/XIFileHelper.m" />
+
+        <header-file src="src/ios/speech/XISpeex.h" />
+        <source-file src="src/ios/speech/XISpeex.m" />
+
+        <resource-file src="src/ios/speech/speex/lib/libspeex_all.a" />
+        <resource-file src="src/ios/speech/speex/lib/libspeexdsp_all.a" />
+        <resource-file src="src/ios/speech/ogg/lib/libagg_all.a" />
+
+        <header-file src="src/ios/speech/ogg/include/config_types.h" />
+        <header-file src="src/ios/speech/ogg/include/ogg.h" />
+        <header-file src="src/ios/speech/ogg/include/os_types.h" />
+
+        <header-file src="src/ios/speech/speex/include/speex.h" />
+        <header-file src="src/ios/speech/speex/include/speex_bits.h" />
+        <header-file src="src/ios/speech/speex/include/speex_buffer.h" />
+        <header-file src="src/ios/speech/speex/include/speex_callbacks.h" />
+        <header-file src="src/ios/speech/speex/include/speex_config_types.h" />
+        <header-file src="src/ios/speech/speex/include/speex_echo.h" />
+        <header-file src="src/ios/speech/speex/include/speex_header.h" />
+        <header-file src="src/ios/speech/speex/include/speex_jitter.h" />
+        <header-file src="src/ios/speech/speex/include/speex_preprocess.h" />
+        <header-file src="src/ios/speech/speex/include/speex_resampler.h" />
+        <header-file src="src/ios/speech/speex/include/speex_stereo.h" />
+        <header-file src="src/ios/speech/speex/include/speex_types.h" />
+    </platform>
+</plugin>
